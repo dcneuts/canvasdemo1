@@ -5,5 +5,13 @@
   //Deselect sibling elements
   //Select clicked elements
 
-//When add color button is pressed
-  //
+//When new color button is pressed
+  //Show color Select or hide color select
+  //When the color is changed update the BG color span
+
+//When add color is pressed
+  //Append color to the control ul
+  //Select the new color
+
+//On mouse events on canvas
+  //Draw some lines using JS
