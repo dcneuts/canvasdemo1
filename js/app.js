@@ -3,7 +3,7 @@
 var color = $(".selected").css("background-color");
 
 //When you click control list the items
-$(".controls li").click(function () {
+$(".controls").on("click", "li", function () {
 	//Deselect sibling elements
 	$(this).siblings().removeClass("selected");
 	//Select clicked elements
@@ -19,11 +19,10 @@ $("#revealColorSelect").click(function () {
 });
 
 function changeColor() {
-	//When the color is changed update the BG color span
 	var r = $("#red").val();
 	var g = $("#green").val();
 	var b = $("#blue").val();
-	$("newColor").css("background-color", "rgb(" + r + "," + g + "," + b + ")");
+	$("#newColor").css("background-color", "rgb(" + r + "," + g + "," + b + ")");
 }
 
 //Slider changes
