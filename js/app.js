@@ -1,6 +1,6 @@
 //Problem: No user interaction causes no change to application
 //Solution: When user interacts cause changes appropriately
-var color=$(".selected").css("background-color");
+var color = $(".selected").css("background-color");
 
 //When you click control list the items
 $(".controls li").click(function() {
@@ -12,10 +12,22 @@ $(this).addClass("selected");
   color=$(this).css("background-color");
 });
 
-
 //When new color button is pressed
-  //Show color Select or hide color select
-  //When the color is changed update the BG color span
+$("#revealColorSelect").click(function(){
+    //Show color Select or hide color select
+    $("#colorSelect").toggle();
+});
+
+function changeColor(){
+    //When the color is changed update the BG color span
+    var r = $("#red").val();
+    var g = $("#green").val();
+    var b = $("#blue").val();
+    $("newColor").css("background-color", "rgb(" + r + "," + g +"," + b +")");
+}
+
+//Slider changes
+$("input[type=range]").on("input", changeColor);
 
 //When add color is pressed
   //Append color to the control ul
