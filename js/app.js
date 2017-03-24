@@ -44,11 +44,18 @@ $("#addNewColor").click(function () {
 //On mouse events on canvas
 $canvas.onmousedown(function(e) {
 	lastEvent=e;
+	mouseDown=true
 }).onmousemove(function(e) {
 	//Draw some lines using JS
+	if(mouseDown) {
 	context.beginPath();
 	context.moveTo(lastEvent.offsetX, lastEvent.offsetY);
 	context.lineTo(e.offsetX, e.offsetY);
+	context.strokeStyle=color;
 	context.stroke();
+	lastEvent=e;
+	}
+}).mouseUp(function () {
+	mouseDown=false;
 });
 
