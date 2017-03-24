@@ -1,12 +1,15 @@
 //Problem: No user interaction causes no change to application
 //Solution: When user interacts cause changes appropriately
+//Treehouse practical class project -- Derek Neuts
+
 var color = $(".selected").css("background-color");
 var $canvas = $("canvas");
 var context = $canvas[0].getContext("2d");
 var lastEvent;
+var mouseDown = false;
 
 //When you click control list the items
-$(".controls").on("click", "li", function () {
+$(".controls").on("click", "li", function() {
 	//Deselect sibling elements
 	$(this).siblings().removeClass("selected");
 	//Select clicked elements
@@ -16,11 +19,13 @@ $(".controls").on("click", "li", function () {
 });
 
 //When new color button is pressed
-$("#revealColorSelect").click(function () {
+$("#revealColorSelect").click(function() {
 	//Show color Select or hide color select
+	changeColor();
 	$("#colorSelect").toggle();
 });
 
+//update the new color span
 function changeColor() {
 	var r = $("#red").val();
 	var g = $("#green").val();
@@ -32,7 +37,7 @@ function changeColor() {
 $("input[type=range]").on("input", changeColor);
 
 //When add color is pressed
-$("#addNewColor").click(function () {
+$("#addNewColor").click(function() {
 	//Append color to the control ul
 	var $newColor=$("<li></li>");
 	$newColor.css("background-color", $("#newColor").css("background-color"));
@@ -41,12 +46,12 @@ $("#addNewColor").click(function () {
 	$newColor.click();
 });
 
-//On mouse events on canvas
+//Onmouse events on the canvas
 $canvas.onmousedown(function(e) {
 	lastEvent=e;
-	mouseDown=true
-}).onmousemove(function(e) {
-	//Draw some lines using JS
+  mouseDown = true;
+}).mousemove(function(e) {
+  //Draw some lines
 	if(mouseDown) {
 	context.beginPath();
 	context.moveTo(lastEvent.offsetX, lastEvent.offsetY);
@@ -55,7 +60,8 @@ $canvas.onmousedown(function(e) {
 	context.stroke();
 	lastEvent=e;
 	}
-}).mouseUp(function () {
+}).mouseup(function() {
 	mouseDown=false;
+}).mouseleave(function() {
+	$canvas.mouseup();
 });
-
